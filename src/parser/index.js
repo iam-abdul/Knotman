@@ -178,11 +178,36 @@ async function getResolvedPaths() {
     const resolvedApi = await SwaggerParser.dereference(yamlData); // Resolve $refs
 
     // After loading the spec, you can access the paths
-    console.log("Resolved Paths:", resolvedApi);
-    return resolvedApi;
+    // console.log("Resolved Paths:", resolvedApi.paths);
+    return resolvedApi.paths;
   } catch (err) {
     console.error("Error resolving or loading Swagger YAML:", err);
   }
 }
 
-export default getResolvedPaths;
+async function getRoutes() {
+  const paths = await getResolvedPaths();
+
+  console.log("Resolved Paths:", paths);
+  const routes = [];
+
+  for (let path in paths) {
+    console.log("the path is ", path);
+    for (let method in paths[path]) {
+      routes.push({
+        path: path,
+        method: method.toUpperCase(),
+        summary: paths[path][method]["summary"],
+        parameters: paths[path][method]["parameters"],
+        responses: paths[path][method]["responses"],
+        requestBody: paths[path][method]["requestBody"],
+      });
+    }
+  }
+
+  console.log("the routes ", routes);
+
+  return routes;
+}
+
+export default getRoutes;
