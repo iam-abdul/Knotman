@@ -1,0 +1,51 @@
+/* Resetting margin and padding for all elements */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Removing default styles for links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Removing list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Removing table styles */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Ensuring consistent font across the site */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Resetting input fields */
+input,
+button,
+textarea,
+select {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Ensuring no spacing on images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
